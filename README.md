@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# 스페이스워크 프론트엔드 개발자 사전 과제 (이영진)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting started
 
-## Available Scripts
+```sh
+npm install
+-------------
+npm start
+```
 
-In the project directory, you can run:
+<hr/>
 
-### `npm start`
+### 구현 페이지
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+1. 메인 페이지 (이슈 목록)
+2. 404 페이지
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<hr />
 
-### `npm test`
+### 세부 항목
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+● 이슈 상태 필터
 
-### `npm run build`
+- 이슈 상태 (all, open, closed)에 따라 리스트 요청 (React Query key 이용)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+● 정렬 옵션 선택
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 정렬 옵션 (created, updated, comments)에 따라 리스트 요청 (React Query key 이용)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+● 이슈 리스트 테이블
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- URL 파라미터 값을 통해 필터, 정렬 옵션을 리스트에 반영
+- 로딩 중일 때 로딩 스피너 렌더링
+- 값이 undefined이거나 null일 경우 fetch에 실패했다고 간주하여
+안내 메시지 및 리로드 버튼 표시
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+● 페이지네이션
 
-## Learn More
+- 이슈 목록 api에서는 totalCount 항목을 제공해주지 않아서
+페이지네이션을 구현하기 위해 매 페이지 요청마다 다음 페이지까지 pre fetch하는 로직 작성
+- 다음 페이지의 리스트 length가 10 미만일 경우 마지막 페이지로 간주하고 이벤트 비활성화
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+▶ 이 외의 모든 요구 사항들 작업 완료
+```
+
+### 사용 라이브러리
+
+```sh
+□ emotion
+  - 스타일의 컴포넌트화 및 글로벌 스타일의 적용이 간편하다.
+  - 이전에 자주 사용했던 라이브러리여서 사용에 무리가 없다.
+
+□ react-query
+  - key를 이용한 데이터의 캐싱이 유리하다.
+  - 서버 요청/응답 이후 이벤트 핸들링하기 수월하다.
+
+□ axios
+  - 서버 요청을 간편하게 할 수 있다.
+
+□ react-router-dom
+  - 라우트에 관한 기능들을 간편하게 사용할 수 있다.
+
+```
+
+### 기타 변경사항
+
+```sh
+○ 피그마 파일 수정 권한이 없어서 arrow나 check와 같은 이미지 파일을 추출할 수 없는 문제가 있었습니다.
+-> 최대한 비슷한 아이콘을 찾다가
+https://phosphoricons.com/
+위 사이트에서 추출하여 사용하였습니다.
+```
+
+<br />
