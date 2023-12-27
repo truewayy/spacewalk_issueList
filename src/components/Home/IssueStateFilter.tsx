@@ -24,6 +24,7 @@ const states: {
   },
 ];
 
+// 이슈 상태 필터 컴포넌트 (모달 포함)
 const IssueStateFilter = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();

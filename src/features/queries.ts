@@ -5,6 +5,7 @@ import { Issue, SortOption } from '../interfaces/issue';
 
 const ISSUE_LIST = 'issueList';
 
+// 이슈 리스트 가져오는 커스텀 훅 (useQuery 사용)
 export const useGetIssueList = (
   owner: string,
   repo: string,

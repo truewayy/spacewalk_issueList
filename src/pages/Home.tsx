@@ -9,15 +9,22 @@ const Home = () => {
   return (
     <Container>
       <IssueBox>
+        <div
+          style={{ width: '100%', height: '1px', backgroundColor: '#DFE5EB' }}
+        />
         <Title>이슈정리</Title>
         <TableBox>
           <FilterBox>
+            {/* 이슈 상태 필터 */}
             <IssueStateFilter />
+            {/* 정렬 옵션 선택 */}
             <SortOptionSelect />
           </FilterBox>
+          {/* 이슈 리스트 테이블 */}
           <Table />
+          {/* 페이지네이션 */}
+          <Pagination />
         </TableBox>
-        <Pagination />
       </IssueBox>
     </Container>
   );

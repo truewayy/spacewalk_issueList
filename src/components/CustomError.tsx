@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+// 일시적인 오류 컴포넌트
 const CustomError = () => (
   <div
     style={{

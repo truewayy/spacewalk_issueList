@@ -25,6 +25,7 @@ const options: {
   },
 ];
 
+// 정렬 옵션 선택 컴포넌트 (모달 포함)
 const SortOptionSelect = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+// 커스텀 404 페이지
 const Custom404 = () => (
   <div
     style={{

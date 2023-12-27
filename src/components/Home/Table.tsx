@@ -7,6 +7,7 @@ import convertedDate from '../../utils/dateConvert';
 import CustomError from '../CustomError';
 import Loading from '../Loading';
 
+// 이슈 목록을 보여주는 테이블 컴포넌트
 const Table = () => {
   const [searchParams] = useSearchParams();
   const state = searchParams.get('state') as Issue['state'];

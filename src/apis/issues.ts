@@ -1,6 +1,7 @@
 import { Issue, SortOption } from '../interfaces/issue';
 import instance from './instance';
 
+// 이슈 리스트 가져오는 API
 export const getIssues = async (
   owner: string,
   repo: string,

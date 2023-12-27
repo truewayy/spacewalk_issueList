@@ -6,6 +6,7 @@ interface ModalProps {
   onRequestClose: () => void;
 }
 
+// 모달 컴포넌트 (esc 키로 닫기 가능)
 const Modal = ({
   isOpen,
   onRequestClose,

@@ -1,3 +1,4 @@
+// Date: YYYY-MM-DD 변환
 const convertedDate = (date: string) => {
   const converted = new Date(date);
   return `${converted.getFullYear()}-${converted.getMonth() + 1}-${converted

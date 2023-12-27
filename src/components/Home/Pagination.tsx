@@ -6,6 +6,7 @@ import arrowLeft from '../../assets/arrow-left.svg';
 import { useGetIssueList } from '../../features/queries';
 import { Issue, SortOption } from '../../interfaces/issue';
 
+// 페이지네이션 컴포넌트
 const Pagination = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const state = searchParams.get('state') as Issue['state'];

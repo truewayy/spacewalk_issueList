@@ -1,6 +1,7 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
+// 로딩 스피너 컴포넌트
 const Loading = ({ height }: { height: number | string }) => {
   return (
     <Container height={height}>

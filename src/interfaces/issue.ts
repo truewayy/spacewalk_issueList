@@ -1,5 +1,7 @@
+// 정렬 옵션 타입
 export type SortOption = 'created' | 'updated' | 'comments';
 
+// 이슈 타입 (API 응답 타입과 동일)
 export interface Issue {
   url: string;
   repository_url: string;
