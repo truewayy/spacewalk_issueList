@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import IssueStateFilter from '../components/Home/IssueStateFilter';
+import Pagination from '../components/Home/Pagination';
 import SortOptionSelect from '../components/Home/SortOptionSelect';
 import Table from '../components/Home/Table';
 
@@ -16,6 +17,7 @@ const Home = () => {
           </FilterBox>
           <Table />
         </TableBox>
+        <Pagination />
       </IssueBox>
     </Container>
   );

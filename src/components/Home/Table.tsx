@@ -10,12 +10,15 @@ const Table = () => {
   const [searchParams] = useSearchParams();
   const state = searchParams.get('state') as Issue['state'];
   const sort = searchParams.get('sort') as SortOption;
+  const page = Number(searchParams.get('page')) || 1;
 
   const { data: issues, isLoading } = useGetIssueList(
     'facebook',
     'react',
     state,
     sort,
+    page,
+    10,
   );
 
   return (
@@ -44,7 +47,15 @@ const Table = () => {
                 }}>
                 {issue.title}
               </div>
-              <div style={{ width: '120px' }}>{issue.user.login}</div>
+              <div
+                style={{
+                  width: '120px',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                }}>
+                {issue.user.login}
+              </div>
               <div style={{ width: '90px' }}>
                 {convertedDate(issue.created_at)}
               </div>
