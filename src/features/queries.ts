@@ -13,12 +13,8 @@ export const useGetIssueList = (
   page?: number,
   per_page?: number,
 ) => {
-  const query = useQuery(
-    [ISSUE_LIST, owner, repo, state, sort, page],
-    () => getIssues(owner, repo, state, sort, page, per_page),
-    {
-      keepPreviousData: true,
-    },
+  const query = useQuery([ISSUE_LIST, owner, repo, state, sort, page], () =>
+    getIssues(owner, repo, state, sort, page, per_page),
   );
   return query;
 };

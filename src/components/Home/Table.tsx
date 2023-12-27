@@ -4,13 +4,19 @@ import { useSearchParams } from 'react-router-dom';
 import { useGetIssueList } from '../../features/queries';
 import { Issue, SortOption } from '../../interfaces/issue';
 import convertedDate from '../../utils/dateConvert';
+import Loading from '../Loading';
 
 const Table = () => {
   const [searchParams] = useSearchParams();
   const state = searchParams.get('state') as Issue['state'];
   const sort = searchParams.get('sort') as SortOption;
 
-  const { data: issues } = useGetIssueList('facebook', 'react', state, sort);
+  const { data: issues, isLoading } = useGetIssueList(
+    'facebook',
+    'react',
+    state,
+    sort,
+  );
 
   return (
     <TableContainer>
@@ -22,26 +28,36 @@ const Table = () => {
         <div style={{ width: '90px', textAlign: 'center' }}>수정일</div>
         <div style={{ width: '60px' }}>코멘트 수</div>
       </TableHeader>
-      {issues?.map((issue) => (
-        <TableBody key={issue.id}>
-          <div style={{ width: '60px' }}>{issue.number}</div>
-          <div
-            style={{
-              width: '421px',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-            }}>
-            {issue.title}
-          </div>
-          <div style={{ width: '120px' }}>{issue.user.login}</div>
-          <div style={{ width: '90px' }}>{convertedDate(issue.created_at)}</div>
-          <div style={{ width: '90px' }}>{convertedDate(issue.updated_at)}</div>
-          <div style={{ width: '60px', textAlign: 'right' }}>
-            {issue.comments}
-          </div>
-        </TableBody>
-      ))}
+      <div>
+        {isLoading ? (
+          <Loading height='350px' />
+        ) : (
+          issues?.map((issue) => (
+            <TableBody key={issue.id}>
+              <div style={{ width: '60px' }}>{issue.number}</div>
+              <div
+                style={{
+                  width: '421px',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                }}>
+                {issue.title}
+              </div>
+              <div style={{ width: '120px' }}>{issue.user.login}</div>
+              <div style={{ width: '90px' }}>
+                {convertedDate(issue.created_at)}
+              </div>
+              <div style={{ width: '90px' }}>
+                {convertedDate(issue.updated_at)}
+              </div>
+              <div style={{ width: '60px', textAlign: 'right' }}>
+                {issue.comments}
+              </div>
+            </TableBody>
+          ))
+        )}
+      </div>
     </TableContainer>
   );
 };
@@ -66,7 +82,7 @@ const TableHeader = styled.div`
 
 const TableBody = styled.div`
   width: 100%;
-  padding: 6px 12px;
+  padding: 8px 12px;
   display: flex;
   align-items: flex-start;
   gap: 35px;
