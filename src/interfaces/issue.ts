@@ -1,3 +1,5 @@
+export type SortOption = 'created' | 'updated' | 'comments';
+
 export interface Issue {
   url: string;
   repository_url: string;
