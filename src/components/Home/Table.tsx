@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useGetIssueList } from '../../features/queries';
 import { Issue, SortOption } from '../../interfaces/issue';
 import convertedDate from '../../utils/dateConvert';
+import CustomError from '../CustomError';
 import Loading from '../Loading';
 
 const Table = () => {
@@ -21,6 +22,8 @@ const Table = () => {
     10,
   );
 
+  const isError = !isLoading && (issues === undefined || issues === null);
+
   return (
     <TableContainer>
       <TableHeader>
@@ -32,42 +35,40 @@ const Table = () => {
         <div style={{ width: '60px' }}>코멘트 수</div>
       </TableHeader>
       <div>
-        {isLoading ? (
-          <Loading height='350px' />
-        ) : (
-          issues?.map((issue) => (
-            <TableBody key={issue.id}>
-              <div style={{ width: '60px' }}>{issue.number}</div>
-              <div
-                style={{
-                  width: '421px',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                }}>
-                {issue.title}
-              </div>
-              <div
-                style={{
-                  width: '120px',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                }}>
-                {issue.user.login}
-              </div>
-              <div style={{ width: '90px' }}>
-                {convertedDate(issue.created_at)}
-              </div>
-              <div style={{ width: '90px' }}>
-                {convertedDate(issue.updated_at)}
-              </div>
-              <div style={{ width: '60px', textAlign: 'right' }}>
-                {issue.comments}
-              </div>
-            </TableBody>
-          ))
-        )}
+        {isLoading && <Loading height='350px' />}
+        {isError && <CustomError />}
+        {issues?.map((issue) => (
+          <TableBody key={issue.id}>
+            <div style={{ width: '60px' }}>{issue.number}</div>
+            <div
+              style={{
+                width: '421px',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+              }}>
+              {issue.title}
+            </div>
+            <div
+              style={{
+                width: '120px',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+              }}>
+              {issue.user.login}
+            </div>
+            <div style={{ width: '90px' }}>
+              {convertedDate(issue.created_at)}
+            </div>
+            <div style={{ width: '90px' }}>
+              {convertedDate(issue.updated_at)}
+            </div>
+            <div style={{ width: '60px', textAlign: 'right' }}>
+              {issue.comments}
+            </div>
+          </TableBody>
+        ))}
       </div>
     </TableContainer>
   );
