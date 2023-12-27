@@ -1,11 +1,11 @@
-import { Issue } from '../interfaces/issue';
+import { Issue, SortOption } from '../interfaces/issue';
 import instance from './instance';
 
 export const getIssues = async (
   owner: string,
   repo: string,
   state: Issue['state'] = 'all',
-  sort: 'created' | 'updated' | 'comments' = 'created',
+  sort: SortOption = 'created',
   page = 1,
   per_page = 10,
 ) => {
