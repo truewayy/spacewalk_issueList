@@ -38,6 +38,10 @@ const IssueBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  @media (max-width: 1200px) {
+    width: 100%;
+    padding: 72px 40px;
+  }
 `;
 
 const Title = styled.span`

@@ -27,46 +27,50 @@ const Table = () => {
   return (
     <TableContainer>
       <TableHeader>
-        <div style={{ width: '60px' }}>번호</div>
-        <div style={{ width: '421px' }}>제목</div>
-        <div style={{ width: '120px' }}>작성자</div>
-        <div style={{ width: '90px', textAlign: 'center' }}>작성일</div>
-        <div style={{ width: '90px', textAlign: 'center' }}>수정일</div>
-        <div style={{ width: '60px' }}>코멘트 수</div>
+        <Row style={{ minWidth: '60px' }}>번호</Row>
+        <Row id='title'>제목</Row>
+        <Row style={{ minWidth: '120px' }}>작성자</Row>
+        <Row style={{ minWidth: '90px', textAlign: 'center' }}>작성일</Row>
+        <Row id='updated' style={{ minWidth: '90px', textAlign: 'center' }}>
+          수정일
+        </Row>
+        <Row style={{ minWidth: '60px' }}>코멘트 수</Row>
       </TableHeader>
       <div>
-        {isLoading && <Loading height='350px' />}
+        {isLoading && <Loading height='320px' />}
         {isError && <CustomError />}
         {issues?.map((issue) => (
           <TableBody key={issue.id}>
-            <div style={{ width: '60px' }}>{issue.number}</div>
-            <div
+            <Row style={{ minWidth: '60px' }}>{issue.number}</Row>
+            <Row
+              id='title'
               style={{
+                maxWidth: '421px',
                 width: '421px',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
               }}>
               {issue.title}
-            </div>
-            <div
+            </Row>
+            <Row
               style={{
-                width: '120px',
+                minWidth: '120px',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
               }}>
               {issue.user.login}
-            </div>
-            <div style={{ width: '90px' }}>
+            </Row>
+            <Row style={{ minWidth: '90px' }}>
               {convertedDate(issue.created_at)}
-            </div>
-            <div style={{ width: '90px' }}>
+            </Row>
+            <Row id='updated' style={{ minWidth: '90px' }}>
               {convertedDate(issue.updated_at)}
-            </div>
-            <div style={{ width: '60px', textAlign: 'right' }}>
+            </Row>
+            <Row style={{ minWidth: '60px', textAlign: 'right' }}>
               {issue.comments}
-            </div>
+            </Row>
           </TableBody>
         ))}
       </div>
@@ -80,6 +84,7 @@ const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow: auto;
 `;
 
 const TableHeader = styled.div`
@@ -99,4 +104,14 @@ const TableBody = styled.div`
   align-items: flex-start;
   gap: 35px;
   color: #5a6066;
+`;
+
+const Row = styled.div`
+  color: #5a6066;
+  font-size: 14px;
+  &#title {
+    min-width: 250px;
+    max-width: 421px;
+    width: 421px;
+  }
 `;

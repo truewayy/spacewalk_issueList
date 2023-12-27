@@ -4,7 +4,7 @@ const CustomError = () => (
   <div
     style={{
       textAlign: 'center',
-      height: '350px',
+      height: '320px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
