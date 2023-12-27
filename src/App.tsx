@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import Custom404 from './pages/Custom404';
 import Home from './pages/Home';
 
 function App() {
   return (
-    <BrowserRouter basename='/home'>
+    <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='*' element={<Custom404 />} />
       </Routes>
     </BrowserRouter>
   );
