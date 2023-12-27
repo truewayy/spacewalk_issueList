@@ -11,7 +11,7 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response;
   },
   (error) => {
     return Promise.reject(error);
